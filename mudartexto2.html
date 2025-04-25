@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mudar parágrafo</title>
+</head>
+<body>
+    <p id="paragrafo-original1">Este é o primeiro paragrafo que será mudado.</p>
+
+    <input type="text" id = "Texto1" placeholder="Digite um novo texto">
+    <button onclick = "alterarTexto1()">Alterar</button>
+    <button id="bu1" onclick="limpar()">limpar</button>
+
+    <script>
+        function alterarTexto1() {
+          const input = document.getElementById("Texto1");
+          const paragrafo = document.getElementById("paragrafo-original1");
+          const novoTexto = input.value.trim(); // Remove espaços em branco
+          
+        
+          if (novoTexto === "") {
+            alert("Por favor, digite um texto no campo.");
+            return; // Sai da função se o input estiver vazio
+          }
+        
+          paragrafo.textContent = novoTexto; // Atualiza o texto do parágrafo
+          input.value = ""; // Limpa o input
+        }
+        function limpar(){
+            const imput = document.getElementById("Texto1")
+            imput.value = ""
+        }
+        </script>
+
+    <p id="paragrafo-original2">Este é o segundo paragrafo que será mudado.</p>
+
+    <input type="text" id = "Texto2" placeholder="Digite um novo texto">
+    <button onclick = "alterarTexto2()">Alterar</button>
+    <button id="bu2" onclick="limpar()">limpar</button>
+
+    <script>
+        function alterarTexto2() {
+          const input = document.getElementById("Texto2");
+          const paragrafo = document.getElementById("paragrafo-original2");
+          const novoTexto = input.value.trim(); // Remove espaços em branco
+          
+        
+          if (novoTexto === "") {
+            alert("Por favor, digite um texto no campo.");
+            return; // Sai da função se o input estiver vazio
+          }
+        
+          paragrafo.textContent = novoTexto; // Atualiza o texto do parágrafo
+          input.value = ""; // Limpa o input
+        }
+        function limpar(){
+            const imput = document.getElementById("Texto2")
+            imput.value = ""
+        }
+        </script>
+
+    <p id="paragrafo-original3">Este é o terceiro paragrafo que será mudado.</p>
+
+    <input type="text" id = "Texto3" placeholder="Digite um novo texto">
+    <button onclick = "alterarTexto3()">Alterar</button>
+    <button id="bu3" onclick="limpar()">limpar</button>
+
+    <script>
+        function alterarTexto3() {
+          const input = document.getElementById("Texto3");
+          const paragrafo = document.getElementById("paragrafo-original3");
+          const novoTexto = input.value.trim(); // Remove espaços em branco
+          
+        
+          if (novoTexto === "") {
+            alert("Por favor, digite um texto no campo.");
+            return; // Sai da função se o input estiver vazio
+          }
+        
+          paragrafo.textContent = novoTexto; // Atualiza o texto do parágrafo
+          input.value = ""; // Limpa o input
+        }
+        function limpar(){
+            const imput = document.getElementById("Texto3")
+            imput.value = ""
+        }
+        </script>
+
+        <label for="nome">Digite seu nome:</label>
+        <input type="text" id="nome" placeholder="Seu nome">
+        <button onclick="exibirMensagem()">Enviar</button>
+        <p id="mensagem"></p>
+    
+        <script>
+            function exibirMensagem() {
+                let nome = document.getElementById("nome").value;
+                let mensagem = "Bem-vindo, " + nome + "!";
+                document.getElementById("mensagem").innerHTML = mensagem;
+            }
+        </script>
+
+    <button onclick = "mudartexto()"> mude o texto </button>
+    <button onclick = "mudarcor()"> mude a cor </button>
+
+    <script>
+        function mudartexto(){
+            const elemento1 = document.getElementById("Texto");
+            elemento1.innerText= "Primeiro novo texto"
+            const elemento2 = document.getElementById("Texto");
+            elemento2.innerText= "Segundo novo texto"
+            const elemento3 = document.getElementById("Texto");
+            elemento3.innerText= "Terceiro novo texto"
+        }
+        </script>
+    <script>
+        function mudarcor(){
+            const elemento1 = document.getElementById("paragrafo-original1");
+            elemento1.style.color = "red"
+            const elemento2 = document.getElementById("paragrafo-original2");
+            elemento2.style.color = "green"
+            const elemento3 = document.getElementById("paragrafo-original3");
+            elemento3.style.color= "blue"
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saudação Automática e Troca de Imagem</title>
+    <style>
+        /* Estilização geral */
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: white;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+    
+        /* Contêineres centralizados */
+        .container {
+            width: 80%;
+            max-width: 500px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+    
+        .container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.6);
+        }
+    
+        /* Estilização dos textos */
+        p {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            animation: fadeIn 1s ease-in-out;
+        }
+    
+        /* Imagem com animação */
+        img {
+            width: 300px;
+            height: auto;
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+            transition: transform 0.3s;
+        }
+    
+        img:hover {
+            transform: scale(1.1);
+        }
+    
+        /* Botões estilosos */
+        button {
+            font-size: 18px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: #ff4757;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            margin: 5px;
+        }
+    
+        button:hover {
+            background: #ff6b81;
+            transform: scale(1.1);
+        }
+    
+        /* Inputs estilizados */
+        input, select {
+            font-size: 18px;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            width: 80%;
+            max-width: 300px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+    
+        input:focus, select:focus {
+            outline: none;
+            transform: scale(1.05);
+        }
+    
+        /* Animações */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+    </style>
+    
+    
+<body>
+
+    <div class="container">
+        <p id="para1">Parágrafo 1</p>
+        <input type="text" id="input1" placeholder="Digite seu nome">
+    </div>
+
+    <div class="container">
+        <p id="para2">Parágrafo 2</p>
+        <input type="text" id="input2" placeholder="Digite seu nome">
+    </div>
+
+    <div class="container">
+        <p id="para3">Parágrafo 3</p>
+        <input type="text" id="input3" placeholder="Digite seu nome">
+    </div>
+
+    <button onclick="changeAllTexts()">Alterar Todos os Parágrafos</button>
+    <button onclick="changeColor()">Mudar Cor dos Parágrafos</button>
+
+    <div class="container">
+        <img id="image" src="https://via.placeholder.com/300" alt="Imagem">
+        <br>
+        <button onclick="changeImage()">Mudar Imagem</button>
+    </div>
+
+    <div class="container">
+        <p id="para4">Parágrafo 4</p>
+        <input type="text" id="input4" placeholder="Digite algo para inverter">
+        <button onclick="invertText()">Inverter Texto</button>
+    </div>
+
+    <div class="container">
+        <p>Calculadora</p>
+        <input type="number" id="num1" placeholder="Número 1">
+        <input type="number" id="num2" placeholder="Número 2">
+        <select id="operation">
+            <option value="add">Adição</option>
+            <option value="subtract">Subtração</option>
+            <option value="multiply">Multiplicação</option>
+            <option value="divide">Divisão</option>
+        </select>
+        <button onclick="calculate()">Calcular</button>
+        <p id="result">Resultado: </p>
+    </div>
+
+    <script>
+        function changeAllTexts() {
+            for (let i = 1; i <= 3; i++) {
+                let input = document.getElementById(`input${i}`);
+                let para = document.getElementById(`para${i}`);
+                let nomeUsuario = "Ícaro"; // Nome que deve ser reconhecido
+
+                if (input.value.trim().toLowerCase() === nomeUsuario.toLowerCase()) {
+                    para.textContent = `Bem-vindo, ${input.value}`;
+                } else if (input.value.trim() !== "") {
+                    para.textContent = input.value;
+                }
+
+                input.value = ""; // Limpa o campo de entrada
+            }
+        }
+
+        function changeColor() {
+            let paragraphs = document.querySelectorAll("p");
+            let colors = ["red", "blue", "green", "purple", "orange"];
+            paragraphs.forEach(para => {
+                para.style.color = colors[Math.floor(Math.random() * colors.length)];
+            });
+        }
+
+        let images = [
+            "https://wallpapercave.com/wp/wp9058295.jpg",
+            "https://odia.ig.com.br/_midias/jpg/2019/10/17/jair_bolsonaro-13809646.jpg",
+            "https://s2.glbimg.com/OlsA1uWCMWuh-hEz10fj_SoVk40=/1200x/smart/filters:cover():strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/F/7/qkFYZGRuuqBkBNsSng3w/3.jpg"
+        ];
+        let currentIndex = 0;
+
+        function changeImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.getElementById("image").src = images[currentIndex];
+        }
+
+        function invertText() {
+            let input = document.getElementById("input4");
+            input.value = input.value.split("").reverse().join("");
+        }
+
+        function calculate() {
+            let num1 = parseFloat(document.getElementById("num1").value);
+            let num2 = parseFloat(document.getElementById("num2").value);
+            let operation = document.getElementById("operation").value;
+            let result;
+
+            switch (operation) {
+                case "add":
+                    result = num1 + num2;
+                    break;
+                case "subtract":
+                    result = num1 - num2;
+                    break;
+                case "multiply":
+                    result = num1 * num2;
+                    break;
+                case "divide":
+                    result = num2 !== 0 ? num1 / num2 : "Erro: divisão por zero";
+                    break;
+            }
+
+            document.getElementById("result").textContent = "Resultado: " + result;
+        }
+    </script>
+
+</body>
+</html>
+
+
+
+

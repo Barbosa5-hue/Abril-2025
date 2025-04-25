@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de IMC</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos globais */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #4facfe, #00c9fe);
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        /* Container principal */
+        .calculadora {
+            background: #fff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        h1 {
+            font-size: 26px;
+            color: #4facfe;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            background: #4facfe;
+            border: none;
+            color: #fff;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #00a9fe;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Animação de entrada */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Design responsivo */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 22px;
+            }
+
+            button {
+                font-size: 16px;
+            }
+
+            input {
+                font-size: 14px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="calculadora">
+        <h1>Calculadora de IMC</h1>
+        <p>
+            O Índice de Massa Corporal (IMC) é uma medida utilizada para avaliar se uma pessoa está dentro do peso ideal 
+            em relação à sua altura. Ele é calculado dividindo o peso (em quilogramas) pela altura (em metros) ao quadrado. 
+            É uma ferramenta amplamente usada para identificar possíveis problemas de saúde relacionados ao peso.
+        </p>
+        <form id="imcForm">
+            <label for="peso">Peso (kg):</label>
+            <input type="number" id="peso" step="any" placeholder="Ex: 70" required>
+
+            <label for="altura">Altura (m):</label>
+            <input type="number" id="altura" step="any" placeholder="Ex: 1.75" required>
+
+            <button type="button" onclick="calcularIMC()">Calcular IMC</button>
+        </form>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        // Função para calcular o IMC
+        function calcularIMC() {
+            const peso = parseFloat(document.getElementById('peso').value);
+            const altura = parseFloat(document.getElementById('altura').value);
+            const resultado = document.getElementById('resultado');
+
+            if (isNaN(peso) || isNaN(altura) || altura <= 0) {
+                resultado.textContent = "Por favor, insira valores válidos.";
+                resultado.style.color = "red";
+                return;
+            }
+
+            const imc = peso / (altura * altura);
+            resultado.textContent = `Seu IMC é: ${imc.toFixed(2)}`;
+
+            if (imc < 18.5) {
+                resultado.style.color = "orange";
+                resultado.textContent += " (Abaixo do peso)";
+            } else if (imc < 24.9) {
+                resultado.style.color = "green";
+                resultado.textContent += " (Peso normal)";
+            } else if (imc < 29.9) {
+                resultado.style.color = "orange";
+                resultado.textContent += " (Sobrepeso)";
+            } else {
+                resultado.style.color = "red";
+                resultado.textContent += " (Obesidade)";
+            }
+        }
+
+        // Função para manipular o scroll do mouse nos campos de entrada
+        function ajustarValor(event, campoId) {
+            const campo = document.getElementById(campoId);
+            let valorAtual = parseFloat(campo.value) || 0;
+            const incremento = event.deltaY < 0 ? 0.1 : -0.1; // Incrementa ou decrementa com base na rolagem
+            valorAtual += incremento;
+            valorAtual = Math.max(0, valorAtual); // Impede valores negativos
+            campo.value = valorAtual.toFixed(2); // Atualiza o valor no campo
+        }
+
+        // Adicionar os eventos de scroll para os campos de peso e altura
+        document.getElementById('peso').addEventListener('wheel', (event) => ajustarValor(event, 'peso'));
+        document.getElementById('altura').addEventListener('wheel', (event) => ajustarValor(event, 'altura'));
+
+        // Adicionar evento para calcular IMC ao pressionar a tecla Enter
+        document.getElementById('imcForm').addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Impede o comportamento padrão do Enter
+                calcularIMC(); // Chama a função de cálculo
+            }
+        });
+    </script>
+</body>
+</html>

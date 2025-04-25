@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mudar parágrafo</title>
+</head>
+<body>
+    
+    <script>
+        function alterarTexto() {
+          const input = document.getElementById("Texto1");
+          const paragrafo = document.getElementById("paragrafo-original1");
+          const novoTexto = input.value;
+        }
+        
+          if (novoTexto === "") {
+            alert("Por favor, digite um texto no campo.");
+            return;
+        
+          paragrafo.textContent = novoTexto;
+          input.value = "";
+        }
+        function limpar(){
+            const imput = document.getElementById("Texto1")
+            imput.value = ""
+        }
+        </script>
+
+        <label for="nome">Digite seu nome:</label>
+        <input type="text" id="nome" placeholder="Seu nome">
+        <button onclick="exibirMensagem()">Enviar</button>
+        <p id="mensagem"></p>
+    
+        <script>
+            function exibirMensagem() {
+                let nome = document.getElementById("nome").value;
+                let mensagem = "Bem-vindo, " + nome + "!";
+                document.getElementById("mensagem").innerHTML = mensagem;
+            }
+        </script>
+
+    <p id = "Texto1">Esse é o primeiro texto que será mudado</p>
+    <p id = "Texto2">Esse é o segundo texto que será mudado</p>
+    <p id = "Texto3">Esse é o terceiro txto que será mudado</p>
+    <button onclick = "mudartexto()"> mude o texto </button>
+    <button onclick = "mudarcor()"> mude a cor </button>
+
+    <script>
+        function mudartexto(){
+            const elemento1 = document.getElementById("Texto1");
+            elemento1.innerText= "Primeiro novo texto"
+            const elemento2 = document.getElementById("Texto2");
+            elemento2.innerText= "Segundo novo texto"
+            const elemento3 = document.getElementById("Texto3");
+            elemento3.innerText= "Terceiro novo texto"
+        }
+        </script>
+    <script>
+        function mudarcor(){
+            const element0 = document.getElementById("paragrafo-original");
+            element0.style.color = "purple"
+            const elemento1 = document.getElementById("Texto1");
+            elemento1.style.color = "red"
+            const elemento2 = document.getElementById("Texto2");
+            elemento2.style.color = "green"
+            const elemento3 = document.getElementById("Texto3");
+            elemento3.style.color= "blue"
+        }
+    </script>
+</body>
+</html>

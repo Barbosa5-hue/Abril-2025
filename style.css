@@ -1,0 +1,21 @@
+body{
+    color:rgb(13, 53, 13);
+    background-image:url("/home/icaromb-27/Imagens/Sem título.jpeg");
+    background-size: cover;
+}
+.highlight {
+    background-color: green;
+    padding: 2px;
+    border-radius: 2px;
+}
+
+.image{
+    border-style: groove;
+    box-shadow: 14px 10px 15px rgb(255, 0, 43);
+    transition: .6s;
+}
+
+.image:hover{
+   transform: scale(1.0);
+   box-shadow:14px 10px 15px rgb(255, 0, 43) ;
+}
